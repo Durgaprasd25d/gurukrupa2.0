@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="Eng">
+
+<!-- Mirrored from icccomputers.in/registration.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 19 Mar 2024 12:50:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<!-- meta tag -->
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="Computer Institute - ICC Computer Training Institute is the best Computer institute in Deoria, Bhatpar Rani, Near Central Bank. We are accredited centre of NIELIT CCC & O level. Authorise centre of Tally Academy. We are also offering Programing Courses C Language, C++, Java etc.">
+	<meta name="keywords" content="ICC Computer Training Institute, Deoria, Bhatpar Rani, Near Central Bank ICC, Best computer institute in Deoria, computer institute,ICC in Deoria,ccc, o level, java, c, c++ courses " />
+    <!-- responsive tag -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.html">
+    <link rel="shortcut icon" type="image/x-icon" href="images/fav.png">
+    <!-- bootstrap v4 css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <!-- magnific popup css -->
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+    <!-- Offcanvas CSS -->
+    <link rel="stylesheet" type="text/css" href="css/off-canvas.css">
+    <!-- flaticon css  -->
+    <link rel="stylesheet" type="text/css" href="css/flaticon.css">
+    <!-- flaticon2 css  -->
+    <link rel="stylesheet" type="text/css" href="css/flaticon1.css">
+    <!-- Switch style CSS -->
+    <link rel="stylesheet" href="css/color-style.css">
+    <!-- rsmenu CSS -->
+    <link rel="stylesheet" type="text/css" href="css/rsmenu-main.css">
+    <!-- rsmenu transitions CSS -->
+    <link rel="stylesheet" type="text/css" href="css/rsmenu-transitions.css">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- switch color presets css -->
+    <link id="switch_style" href="#" rel="stylesheet" type="text/css">
+    <!-- responsive css -->
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <!-- jquery latest version -->
+    <script src="js/jquery.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+    <style>
+        a.FranchiseBtn {
+            position: relative;
+            margin-left: 10px !important;
+            background-color: #ff3115;
+            border: 2px solid #ff3115;
+            border-radius: 12px;
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 16px;
+            width: 114px;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-weight: 500;
+            text-align: center;
+        }
+    </style><script type="text/javascript">
+function getXMLHTTP() { 
+		var xmlhttp=false;	
+		try{
+			xmlhttp=new XMLHttpRequest();
+		}
+		catch(e)	{		
+			try{			
+				xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			catch(e){
+				try{
+				xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+				}
+				catch(e1){
+					xmlhttp=false;
+				}
+			}
+		}
+		 	
+		return xmlhttp;
+    }
+	
+	function find_courses(subid) {
+		//alert(subid);	
+	   //var cid=document.getElementById("category").value;	
+		var strURL="find_courses689f.html?cid="+subid;
+		var req = getXMLHTTP();
+		
+		if (req) {
+			
+			req.onreadystatechange = function() {
+				if (req.readyState == 4) {
+					// only if "OK"
+					if (req.status == 200) {						
+						document.getElementById('courses_div').innerHTML=req.responseText;
+						//alert("OK");						
+					} else {
+						alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+					}
+				}				
+			}			
+			req.open("GET.html", strURL, true);
+			req.send(null);
+		}		
+	}
+function find_batch(batchid) {
+		//alert(subid);	
+	   //var cid=document.getElementById("category").value;	
+		var strURL="find_batchca49.html?bid="+batchid;
+		var req = getXMLHTTP();
+		
+		if (req) {
+			
+			req.onreadystatechange = function() {
+				if (req.readyState == 4) {
+					// only if "OK"
+					if (req.status == 200) {						
+						document.getElementById('batch_div').innerHTML=req.responseText;
+						//alert("OK");						
+					} else {
+						alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+					}
+				}				
+			}			
+			req.open("GET.html", strURL, true);
+			req.send(null);
+		}		
+	}
+
+	function find_district(subid) {
+		//alert(subid);	
+	   //var cid=document.getElementById("category").value;	
+		var strURL="find_district689f.html?cid="+subid;
+		var req = getXMLHTTP();
+		
+		if (req) {
+			
+			req.onreadystatechange = function() {
+				if (req.readyState == 4) {
+					// only if "OK"
+					if (req.status == 200) {						
+						document.getElementById('district_div').innerHTML=req.responseText;
+						//alert("OK");						
+					} else {
+						alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+					}
+				}				
+			}			
+			req.open("GET.html", strURL, true);
+			req.send(null);
+		}		
+	}
+
+
+
+</script>
+</head>
+<body class="home1">
+<!--Full width header Start-->
+<div class="full-width-header">
+<!-- Toolbar Start -->
+<div class="rs-toolbar">
+<div class="container">
+<div class="row">
+<div class="col-md-4">
+<div class="rs-toolbar-left">
+<div class="welcome-message">
+<i class="fa fa-bank"></i><span>ICC Computer Training Institute</span>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="rs-toolbar-right">
+<div class="toolbar-share-icon">
+<ul>
+<li><i class="fa fa-phone" style="color:#fff;"></i> <a href="#">7054321141, 9935017501</a></li>
+<li><i class="fa fa-envelope" style="color:#fff;"></i> <a href="#">aba@gmail.com</a></li>
+
+<li><a href="https://www.facebook.com/" target="blank"><i class="fa fa-facebook"></i></a></li>
+<li><a href="www.twitter.com/index.html" target="blank"><i class="fa fa-twitter"></i></a></li>
+<li><a href="www.instagram.com/index.html" target="blank"><i class="fa fa-instagram"></i></a></li>
+
+<li><i class="fa fa-envelope" style="color:orange;"></i> <a href="https://webmail1.hostinger.in/" target="_blank"style="color:orange;">Webmail</a></li>
+</ul>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Toolbar End -->
+<!--Header Start-->
+<header id="rs-header" class="rs-header">
+<!-- Header Top Start -->
+<div class="rs-header-top">
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-sm-12">
+<div class="logo-area text-center" style="margin-top:3%!important;">
+<a href="index-2.html"><div class="logo"><img src="images/headlogo.png" alt="logo" ></a>
+</div>
+</div>
+</div>
+
+<div class="col-md-4 col-sm-12">
+<div class="logo-area text-center" style="margin-top:3%!important;">
+ <style>
+                 a.olbtn {
+    color: #fff;
+}
+.olbtn {
+    animation: glowing 1500ms infinite;
+    margin-left:15px;
+}
+.olbtn {
+    background-color: #004A7F;
+    -webkit-border-radius: 5px;
+    border-radius: 4px;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+	font-weight:800;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+}@-webkit-keyframes glowing {
+  0% { background-color: #B20000;font-weight:800; -webkit-box-shadow: 0 0 3px #B20000;font-weight:800; }
+  50% { background-color: #FF0000;font-weight:800; -webkit-box-shadow: 0 0 10px #FF0000;font-weight:800; }
+  100% { background-color: #B20000;font-weight:800; -webkit-box-shadow: 0 0 3px #B20000;font-weight:800; }
+}
+
+@-moz-keyframes glowing {
+  0% { background-color: #B20000;font-weight:800; -moz-box-shadow: 0 0 3px #B20000;font-weight:800; }
+  50% { background-color: #FF0000;font-weight:800; -moz-box-shadow: 0 0 3px yellow;color:#000; font-weight:800; }
+  100% { background-color: #B20000;font-weight:800; -moz-box-shadow: 0 0 3px #B20000;font-weight:800; }
+}
+
+@-o-keyframes glowing {
+  0% { background-color: #B20000;font-weight:800; box-shadow: 0 0 3px #B20000;font-weight:800; }
+  50% { background-color: yellow;color:#000;font-weight:800; box-shadow: 0 0 3px yellow;color:#000;font-weight:800; }
+  100% { background-color: #B20000;font-weight:800; box-shadow: 0 0 3px #B20000;font-weight:800; }
+}
+
+@keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: yellow;color:#000;font-weight:800; box-shadow: 0 0 3px yellow;color:#000;font-weight:800; }
+  100% { background-color: #B20000;font-weight:800; box-shadow: 0 0 3px #B20000;font-weight:800; }
+}
+
+.olbtn {
+  -webkit-animation: glowing 1400ms infinite;
+  -moz-animation: glowing 1400ms infinite;
+  -o-animation: glowing 1400ms infinite;
+  animation: glowing 1500ms infinite;
+}
+</style> 
+<center>
+<div class="mrg-tp-15" style="margin-top:15px;margin-bottom:5px;"> 
+<a class="olbtn" href="inquiry.html" style="margin-top:5px;">Enquiry </a>
+<a class="olbtn" href="contact-us.html" style="margin-top:5px;"> Call Request </a>
+<a class="olbtn" href="business-partner.html" style="margin-top:5px;"> Franchise Enquiry</a>
+</div>
+</center>
+
+
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+<!-- Header Top End -->
+<!-- Menu Start -->
+<div class="menu-area menu-sticky">
+<div class="container">
+<div class="main-menu">
+<div class="row">
+<div class="col-sm-12">
+<!-- <div id="logo-sticky" class="text-center">
+<a href="index.html"><img src="images/logo.png" alt="logo"></a>
+</div> -->
+<a class="rs-menu-toggle"><i class="fa fa-bars"></i>Menu</a>
+<nav class="rs-menu">
+<ul class="nav-menu">
+<!-- Home -->
+<li class="current-menu-item current_page_item "> <a href="index-2.html" class="home">Home</a> </li>
+<!-- End Home -->
+<!--About Menu Start-->
+<li class="menu-item-has-children">
+<a href="#">About Us</a>
+ 
+<ul class="sub-menu">
+<li><a href="page5887.html?id=TVRreg==">ICC Profile</a></li>
+<li><a href="page8f54.html?id=TVRjPQ==">Our Mission/Our Vision</a></li>
+<li><a href="page28d3.html?id=TVRjNA==">Director Message</a></li>
+<li><a href="pageca5d.html?id=TVRnPQ==">Facilities</a></li>
+</ul>
+ 
+</li>
+<!--About Menu End-->
+<!--About Menu Start-->
+<li class="menu-item-has-children">
+<a href="javascript:void(0)">Courses</a>
+<ul class="sub-menu">
+<li><a href="courses3cb0.html?cid=TXpFPQ==">00000</a></li>
+<li><a href="courses5a9c.html?cid=TVRJPQ==">DIPLOMA COURSES</a></li>
+<li><a href="courses23c5.html?cid=TVRZPQ==">DUAL CERTIFICATION COURSES</a></li>
+<li><a href="coursesce0e.html?cid=TWpVPQ==">ELEMENTARY COURSES</a></li>
+<li><a href="courses8500.html?cid=TVRjPQ==">SPOKEN ENGLISH COURSES</a></li>
+<li><a href="coursesf77a.html?cid=TWpRPQ==">ACADEMIC COURSES</a></li>
+<li><a href="coursesa2be.html?cid=TVRVPQ==">NIELIT COURSES</a></li>
+<li><a href="courses205b.html?cid=TXpBPQ==">ALL COMBO PLAN  SKIM</a></li>
+  
+</ul>
+</li>
+<!--About Menu End-->
+<li class="menu-item-has-children"> <a href="javascript:void(0);">Student Zone</a>
+<ul class="sub-menu">
+<li><a href="registration.html">Online Registration</a></li>
+<li><a href="verify.html">Student Verification</a></li>
+<li><a href="login.html">Student Login</a></li>
+<li><a href="certificate-verification.html">Certificate Verifications</a></li>
+<li><a href="marksheet-verification.html">Mark Sheet Verifications</a></li>
+</ul>
+</li>
+<li class="menu-item-has-children"> <a href="javascript:void(0);">Corporate Zone</a>
+<ul class="sub-menu">
+<li><a href="business-partner.html">Become a Franchisee</a></li>
+<li><a href="placement.html">Job Openings</a></li>
+<li><a href="upload-resume.html">Upload Resume</a></li>
+<li><a href="interview-skill.html">Interview Skill Training</a></li>
+<li><a href="business-development.html">Business Development Training</a></li>
+</ul>
+</li>
+<li class="menu-item-has-children"> <a href="javascript:void(0);">Online Payment</a>
+<ul class="sub-menu">
+<li><a href="pay.html">Tution Fee</a></li>
+<li><a href="pay.html">Examination Fee</a></li>
+<li><a href="pay.html">Diploma Verification Fee</a></li>
+<li><a href="pay.html">Viva/Practical Fee</a></li>
+<li><a href="pay.html">Project Training Fee</a></li>
+</ul>
+</li>  
+<li class="menu-item-has-children"> <a href="javascript:void(0);">Download</a>
+<ul class="sub-menu">
+<li><a href="admitcard.html">Download Admit Card</a></li>
+<li><a href="download-enotes.html">Download E-Notes</a></li>
+<li><a href="http://student.nielit.gov.in/"target="blank">Download Nielit Admit Card</a></li>
+<li><a href="http://www.nielit.gov.in/Certificate/"target="blank">Download Nielit Certificate</a></li>
+<li><a href="http://student.nielit.gov.in/"target="blank">Download Nielit Result</a></li>
+</ul>
+</li>  
+<li class="menu-item-has-children"><a href="#">Gallery</a>
+<ul class="sub-menu">
+<li ><a href="gallery.html">ICC gallery</a></li>
+<li ><a href="videos.html">Videos</a></li>
+</ul>
+</li>
+			 
+<li class="menu-item-has-children"> <a href="javascript:void(0);">Contact us</a>
+<ul class="sub-menu">
+<li><a href="contact-us.html">Contact ICC (H.O.)</a></li>
+<li><a href="branch-contact.html">Contact ICC Branch</a></li>
+<!--<li><a href="payment.php">Diploma Verification Fee</a></li>-->
+</ul>
+</li> 
+<li class="franchise"> <a href="business-partner.html" class="FranchiseBtn">FRANCHISE</a></li> 
+<!--Contact Menu End-->
+</ul>
+</nav>
+<div class="right-bar-icon rs-offcanvas-link text-right">
+<a class="hidden-xs rs-search" data-target=".search-modal" data-toggle="modal" href="#"><i class="fa fa-search"></i></a>
+<a id="nav-expander" class="nav-expander fixed"><i class="fa fa-bars fa-lg white"></i></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Menu End -->
+</header>
+<!--Header End-->
+    </div><!--Full width header End-->
+<div>
+<div class="rs-breadcrumbs bg7 breadcrumbs-overlay">
+    <div class="breadcrumbs-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="page-title">Online Registration</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumbs End -->
+<!-- About Us Start -->
+<div id="rs-about-2" class="rs-about-2 sec-spacer" >
+<div class="container" style="background:#CCCCCC; padding:20px;margin-bottom:20px;">
+<div class="row">
+<style>
+.col-md-4{ 
+margin-top:10px;
+margin-bottom:10px;
+}
+</style>
+<div class="col-lg-12">
+<form method="post" enctype="multipart/form-data" name="form1"	style="padding:15px;">
+<input type="hidden" value="" name="refer" >
+<input name="username" type="hidden" id="username" value="1">			
+<input type="hidden" name="uid" value="1">
+<input type="hidden" name="pid" value="">
+<input type="hidden" name="cid" value="">
+<div id="page-inner">
+<div class="row">
+<div class="col-lg-12 col-md-12">
+<h3 style="color:#990000;border-bottom:dotted 2px #FF0000;">Personal Information</h3>
+</div>
+<div class="col-lg-4 col-md-6"><strong style="color:#003366;">Your Full Name</strong>
+<input name="name" value=""  type="text" id="txtfname" class="form-control" tabindex="1">
+<span class="red" style="color:red;"> </span> 
+</div>
+
+<div class="col-lg-4 col-md-6"><strong style="color:#003366;">Father's Name</strong>
+<input name="father"   value="" type="text" id="txtfathername" class="form-control" tabindex="2">
+<span class="red" style="color:red;"> </span>   
+</div>
+
+<div class="col-lg-4 col-md-6"><strong style="color:#003366;">Mother's Name</strong>
+<input name="mother"   value="" type="text" id="txtfathername" class="form-control" tabindex="3">
+<span class="red" style="color:red;"> </span>   
+</div>
+
+
+</div>
+<div class="row">
+<div class="col-md-4"><strong style="color:#003366;">Gender</strong>
+<select name="gender" id="ddlstgender" required class="form-control" tabindex="4">
+<option value="0">Select Gender</option>
+<option value="Male" >Male</option>
+<option value="Female" >Female</option>
+</select>
+<span class="red" style="color:red;"> </span> 
+</div>
+
+<div class="col-md-4"><strong style="color:#003366;">Date of Birth</strong>
+<input name="dob" value="" type="date" id="txtfathername" class="form-control" tabindex="5">
+<span class="red" style="color:red;"> </span>   
+</div>
+
+<div class="col-md-4"><strong style="color:#003366;">Category</strong><br/>
+<select name="category"   class="form-control"   tabindex="6">
+<option value="">Select</option>
+<option value="SC"  >SC</option>
+<option value="ST"  >ST</option>
+<option value="GEN"  >GEN</option>
+<option value="OBC"  >OBC</option>
+</select> 
+<span class="red" style="color:red;"> </span>   
+</div>
+
+<div class="col-md-4"><strong style="color:#003366;">Academic Background</strong>
+<select name="qui"  class="form-control" tabindex="7" >
+<option value="">Select</option>
+<option  value="10th">10th</option>
+<option value="12th" >12th</option>
+<option value="Graduation" >Graduation</option>
+<option value="Post_Graduation" > Post Graduation</option>
+</select> 
+<span class="red" style="color:red;"> </span>   
+</div>
+<div class="col-md-4"><strong style="color:#003366;">Passing Year</strong>
+<input name="passingyear" maxlength="10"  type="text" value="" id="txtfathercontact" class="form-control" tabindex="8">
+<span class="red" style="color:red;"> </span>   
+</div>
+
+<div class="col-md-4"><strong style="color:#003366;">Adhar Number</strong> 
+<input name="adhar"  type="text"  id="adhar" value="" class="form-control" maxlength="12" tabindex="9" >
+<span class="red" style="color:red;"> </span> 
+</div>
+<div class="col-md-6"><strong style="color:#003366;">Contact Number</strong>
+<input name="contact" maxlength="10"  type="text" value="" id="txtfathercontact" class="form-control" tabindex="10">
+<span class="red" style="color:red;"> </span>   
+</div>
+
+<div class="col-md-6"><strong style="color:#003366;">Email Account</strong> 
+<input name="email"  type="text"  id="email" value="" class="form-control" tabindex="11">
+<span class="red" style="color:red;"> </span> 
+</div>
+</div>
+<br/>                           
+<div class="col-lg-12 col-md-12">
+<h3 style="color:#990000;border-bottom:dotted 2px #FF0000;">Course Information</h3>
+</div>
+<div class="row">
+<div class="col-md-4"><strong style="color:#003366;">Program Name</strong>
+<select name="program" onChange="find_courses($mysqli,this.value)" class="form-control" tabindex="12">
+<option selected="selected" value="0">Select Type</option>
+<option value="17" >SPOKEN ENGLISH COURSES</option>
+<option value="16" >DUAL CERTIFICATION COURSES</option>
+<option value="12" >DIPLOMA COURSES</option>
+<option value="15" >NIELIT COURSES</option>
+<option value="24" >ACADEMIC COURSES</option>
+<option value="25" >ELEMENTARY COURSES</option>
+<option value="30" >ALL COMBO PLAN  SKIM</option>
+<option value="31" >00000</option>
+</select>
+<span class="red" style="color:red;"> </span> 
+</div>
+
+<div class="col-md-4"><strong style="color:#003366;">Select Course</strong>
+<span id="courses_div" tabindex="13">
+<select name="courses" class="form-control" tabindex="14" >
+<option value="">Select</option>
+</select>
+</span>
+<span class="red" style="color:red;"> </span> 
+</div>
+</div>
+<br/>                           
+<div class="col-lg-12 col-md-12">
+<h3 style="color:#990000;border-bottom:dotted 2px #FF0000;">Contact Information</h3>
+</div>
+
+<div class="row">
+
+<div class="col-md-6" style="margin-top:10px;"><strong style="color:#003366;">Address Village/AREA/LOCATION </strong>
+
+<textarea name="address" class="form-control" tabindex="15"></textarea>
+
+<span class="red" style="color:red;"> </span> 
+</div>
+<div class="col-md-6" style="margin-top:10px;"><strong style="color:#003366;">Address Block</strong>
+
+
+<textarea name="address1" class="form-control" tabindex="16"></textarea>
+</div>
+<div class="col-md-6" style="margin-top:10px;">
+<strong style="color:#003366;"> STATE</strong><br>
+<select onChange="find_district(this.value)"  name="state" class="form-control"  tabindex="17">
+<option value="">Select</option>
+<option value="1" >Andaman and Nicobar Island (UT)</option>
+<option value="2" >Andhra Pradesh</option>
+<option value="3" >Arunachal Pradesh</option>
+<option value="4" >Assam</option>
+<option value="5" >Bihar</option>
+<option value="6" >Chandigarh (UT)</option>
+<option value="7" >Chhattisgarh</option>
+<option value="8" >Dadra and Nagar Haveli (UT)</option>
+<option value="9" >Daman and Diu (UT)</option>
+<option value="10" >Delhi (NCT)</option>
+<option value="11" >Goa</option>
+<option value="12" >Gujarat</option>
+<option value="13" >Haryana</option>
+<option value="14" >Himachal Pradesh</option>
+<option value="15" >Jammu and Kashmir</option>
+<option value="16" >Jharkhand</option>
+<option value="17" >Karnataka</option>
+<option value="18" >Kerala</option>
+<option value="19" >Lakshadweep (UT)</option>
+<option value="20" >Madhya Pradesh</option>
+<option value="21" >Maharashtra</option>
+<option value="22" >Manipur</option>
+<option value="23" >Meghalaya</option>
+<option value="24" >Mizoram</option>
+<option value="25" >Nagaland</option>
+<option value="26" >Odisha</option>
+<option value="27" >Puducherry (UT)</option>
+<option value="28" >Punjab</option>
+<option value="29" >Rajastha</option>
+<option value="30" >Sikkim</option>
+<option value="31" >Tamil Nadu</option>
+<option value="32" >Telangana</option>
+<option value="33" >Tripura</option>
+<option value="34" >Uttarakhand</option>
+<option value="35" >Uttar Pradesh</option>
+<option value="36" >West Bengal</option>
+</select>
+<span class="red" style="color:red;"> </span> 
+</div>
+<div class="col-md-6" style="margin-top:10px;"><strong style="color:#003366;"> DISTRICT</strong><br>
+<div  id="district_div" tabindex="18">
+<select name="district" style="padding:5px;"  class="form-control" tabindex="19">
+<option value="">Select</option>
+</select><span class="red" style="color:red;">  </span></div></div>
+
+<div class="col-md-6"style="margin-top:10px;"><strong style="color:#003366;">PINCODE </strong>
+<input name="pincode" maxlength="6" value="" type="text"  id="txtcadd1" class="form-control" tabindex="20">
+<span class="red" style="color:red;"> </span> 
+</div>
+
+<div class="col-md-6"style="margin-top:10px;"><strong style="color:#003366;">Image Upload </strong>
+<input name="uploaded_file" type="file" id="uploaded_file_small"><br/><span style="color:red; font-size:9px;" tabindex="21">Photo must be in .jpg/.jpeg/.bmp And Siz less than 500KB</span>
+</div>
+
+</div>
+                                        
+
+<div class="row">
+<div class="col-md-12"><strong style="color:#003366; font-size:18px;">VERIFICATION CODE</strong></div>
+
+<div class="col-md-4">Enter Verification code</div>
+<div class="col-md-4"><input name="vercode" type="text" id="TextBoxRegCode" class="form-control" tabindex="22" required>
+<span class="red" style="color:red;"> </span></div>
+<div class="col-md-4"><img src="captcha.html" style="padding:5px;"></div>
+</div> 
+
+<div class="row">
+<div class="col-md-12 headerTitle"><strong style="color:#000;">DECLARATION BY STUDENT</strong></div>
+<div class="col-md-12 headerTitle"><p align="justify" > I solemnly declare and affirm that I am duly qualified to take admission in the program for which I have applied and all the certificates and testimonials attached with my application are true and valid. I have fully satisfied myself about the legal status of Avadh Institute of Information Technology, i.e. it is an autonomous statutory body with regulations making power for its functioning. Avadh Institute of Information Technology is duly authorized and competent to take my admission in the program for which I have applied. I also undertake not to ever raise any objection about Avadh Institute of Information Technology legal status to take my admission and award certificate. I also undertake not to demand refund of fee/charges paid by me. In case of any dispute / differences / claim or disciplinary action, settlement by Avadh Institute of Information Technology shall be applicable. I am aware that if any Plagiarism found, my certificate may be cancelled by Avadh Institute of Information Technology without making any prior notice. I shall always follow the rules and regulations of Avadh Institute of Information Technology, in case of any breach there too.
+</p>
+<p > I shall be liable to be penalized for the same which may include expulsion from the Avadh Institute of Information Technology. Avadh Institute of Information Technology is all time free to change the above furnished details which may come without any prior notice. Avadh Institute of Information Technology management has full right to modify/change the terms and conditions at any time without any prior information or notice.
+</p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12" align="center"><button type="submit" class="btn" name="go" style="color: #ffffff; background-color: #2196f3;"> Register Me </button></div>
+</div>
+
+</form>
+
+</div>
+</div>
+</div>
+    </section>
+
+</div>
+<!-- About Us End -->
+
+
+
+</div>
+<!-- Footer Start -->
+<footer id="rs-footer" class="bg3 rs-footer">
+        <!-- Footer Top -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="about-widget">
+                            <h5 class="footer-title">Introduction</h5>
+                            <p align="justify">ICC Computer Training Institute Reg. by (U.P. Govt./NCVT Delhi) Regd. No. - 694/06/07 to conduct full/short term courses. ICC Computer Training Institute is an ISO 9001:2015 certified institute.approved by govt. of india ,accreditation by (USA, dubai, Singapore, Australia & new zealand iso certification).</p>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6 col-md-12">
+                        <h5 class="footer-title">Contact us</h5>
+                        <div class="footerContact">
+                            <ul>
+                                <li><i class="fa fa-phone"></i> <a href="#">7054321141, 9935017501</a></li>
+                                <li><i class="fa fa-map-marker"></i> <a href="#">Rani Pokhra  Near BRC Office , Bhatpar Rani Deoria - 274702.</a></li>
+                                <li><i class="fa fa-envelope "></i> <a href="#">aba@gmail.com</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="copyright">
+                    <p>© 2020 <a href="#"></a>. All Rights Reserved. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Design & Developed By <a href="http://hypernetsolution.com/" target="_blank">Hypernet IT Solution Company</a></p> </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+    <!-- start scrollUp  -->
+    <div id="scrollUp">
+        <i class="fa fa-angle-up"></i>
+    </div>
+
+    <!-- Canvas Menu start -->
+<nav class="right_menu_togle">
+<div class="close-btn"><span id="nav-close" class="text-center">x</span></div>
+<div class="canvas-logo">
+<center><a href="#"><img src="images/mobile-logo.html" alt="logo" style="width:140px;"> </a></center>
+</div>
+<ul class="sidebarnav_menu list-unstyled main-menu">
+<!--Home Menu Start-->
+<li class="current-menu-item">
+<a href="index-2.html">Home</a></li>
+<li class="menu-item-has-children">
+<a href="#">About Us</a>
+ 
+<ul class="sub-menu">
+<li><a href="page5887.html?id=TVRreg==">ICC Profile</a></li>
+<li><a href="page8f54.html?id=TVRjPQ==">Our Mission/Our Vision</a></li>
+<li><a href="page28d3.html?id=TVRjNA==">Director Message</a></li>
+<li><a href="pageca5d.html?id=TVRnPQ==">Facilities</a></li>
+</ul>
+ 
+</li>
+<!--About Menu End-->
+<!--About Menu Start-->
+<li class="menu-item-has-children">
+<a href="javascript:void(0)">Courses</a>
+<ul class="sub-menu">
+<li><a href="coursedetails3cb0.html?cid=TXpFPQ==">00000</a></li>
+<li><a href="coursedetails5a9c.html?cid=TVRJPQ==">DIPLOMA COURSES</a></li>
+<li><a href="coursedetails23c5.html?cid=TVRZPQ==">DUAL CERTIFICATION COURSES</a></li>
+<li><a href="coursedetailsce0e.html?cid=TWpVPQ==">ELEMENTARY COURSES</a></li>
+<li><a href="coursedetails8500.html?cid=TVRjPQ==">SPOKEN ENGLISH COURSES</a></li>
+<li><a href="coursedetailsf77a.html?cid=TWpRPQ==">ACADEMIC COURSES</a></li>
+<li><a href="coursedetailsa2be.html?cid=TVRVPQ==">NIELIT COURSES</a></li>
+<li><a href="coursedetails205b.html?cid=TXpBPQ==">ALL COMBO PLAN  SKIM</a></li>
+  
+</ul>
+</li>
+<!--About Menu End-->
+<li class="menu-item-has-children"> <a href="javascript:void(0);">Student Zone</a>
+<ul class="sub-menu">
+<li><a href="registration.html">Online Registration</a></li>
+<li><a href="verify.html">Student Verification</a></li>
+<li><a href="login.html">Student Login</a></li>
+<li><a href="certificate-verification.html">Certificate Verifications</a></li>
+<li><a href="marksheet-verification.html">Diploma Verifications</a></li>
+</ul>
+</li>
+<li class="menu-item-has-children"> <a href="javascript:void(0);">Corporate Zone</a>
+<ul class="sub-menu">
+<li><a href="business-partner.html">Become a Franchisee</a></li>
+<li><a href="placement.html">Job Openings</a></li>
+<li><a href="upload-resume.html">Upload Resume</a></li>
+<li><a href="interview-skill.html">Interview Skill Training</a></li>
+<li><a href="business-development.html">Business Development Training</a></li>
+</ul>
+</li>
+<li class="menu-item-has-children"> <a href="javascript:void(0);">Online Payment</a>
+<ul class="sub-menu">
+<li><a href="pay.html">Tution Fee</a></li>
+<li><a href="pay.html">Examination Fee</a></li>
+<li><a href="pay.html">Diploma Verification Fee</a></li>
+<li><a href="pay.html">Viva/Practical Fee</a></li>
+<li><a href="pay.html">Project Training Fee</a></li>
+</ul>
+</li>  
+<li class="menu-item-has-children"> <a href="javascript:void(0);">Download</a>
+<ul class="sub-menu">
+<li><a href="admitcard.html">Download Admit Card</a></li>
+<li><a href="download-enotes.html">Download E-Notes</a></li>
+<li><a href="http://student.nielit.gov.in/"target="blank">Download Nielit Admit Card</a></li>
+<li><a href="http://www.nielit.gov.in/Certificate/"target="blank">Download Nielit Certificate</a></li>
+<li><a href="http://student.nielit.gov.in/"target="blank">Download Nielit Result</a></li>
+</ul>
+</li>  
+<li class="menu-item-has-children"><a href="#">Gallery</a>
+<ul class="sub-menu">
+<li ><a href="gallery.html">ICC gallery</a></li>
+<li ><a href="videos.html">Videos</a></li>
+</ul>
+</li>
+			 
+<li class="menu-item-has-children"> <a href="javascript:void(0);">Contact us</a>
+<ul class="sub-menu">
+<li><a href="contact-us.html">Contact ICC (H.O.)</a></li>
+<li><a href="branch-contact.html">Contact ICC Branch</a></li>
+<!--<li><a href="payment.php">Diploma Verification Fee</a></li>-->
+</ul>
+</li>  
+</ul>
+</nav>    <!-- Canvas Menu end -->
+    <!-- modernizr js -->
+    <script src="js/modernizr-2.8.3.min.js"></script>
+
+    <!-- owl.carousel js -->
+    <script src="js/owl.carousel.min.js"></script>
+    <!-- slick.min js -->
+    <script src="js/slick.min.js"></script>
+    <!-- isotope.pkgd.min js -->
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- imagesloaded.pkgd.min js -->
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- counter top js -->
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <!-- magnific popup -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <!-- rsmenu js -->
+    <script src="js/rsmenu-main.js"></script>
+    <!-- plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- Switch js -->
+    <script src="js/color-style.js"></script>
+    <!-- main js -->
+    <script src="js/main.js"></script>
+</body>
+
+<!-- Mirrored from icccomputers.in/registration.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 19 Mar 2024 12:50:23 GMT -->
+</html>
