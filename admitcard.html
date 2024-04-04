@@ -332,10 +332,7 @@
 </div>
 <!-- Breadcrumbs End -->
 <!-- About Us Start -->
-<div id="rs-about-2" class="rs-about-2 sec-spacer">
-    <div class="container">
-        <div class="row rs-vertical-bottom">
-            <style>
+<style>
 	.content-bg {
     width: 100%;
     border: 1px solid #CCC;
@@ -378,60 +375,147 @@ h1, .h1, h2, .h2, h3, .h3 {
     background-image: none;
 border: 1px solid #ccc;}
 </style>
-<div class="col-lg-4">
-</div>
 
-<div class="col-lg-4">
-<div class="login content-bg">
-<center>
-<h3>Download Admit Card</h3>
-<form style="width:100%; margin-left:2%;" id="sky-form" class="sky-fosrm" method="post" onSubmit="return validateLoginForm()" novalidate="novalidate">	
-<div class="row">
-<div class="form-group col-12">
-<lable style="text-align:left;"> Enrollment No </lable>
-<input class="form-control" name="regsno"  value="" id="regsno" type="text" style="text-align:center;">
-</div>
-<div class="form-group col-12">
-<input class="btn" name="go" type="submit" id="submit" value="Verify">
-</div>
-<div class="form-group col-12 ">
-Powered by : <strong>GURUKRUPA</strong>				
-</div>	
-<div class="form-group col-12 result_div">
-<div class="leftBox">leftbox</div>
-<div class="rightBox">rightbox</div>	
+<!-- form css -->
 <style>
-.result_div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.leftBox{
-    margin-right: 5px;
-    gap: 2;
-    border: 2px solid black;
-    width: 49%;
-    height: 50vh;
-    border-radius: 7px;
-}
-.rightBox{
-    border-radius: 7px;
-    height: 50vh;
-    width: 49%;border: 2px solid black;
-}
-</style>			
-</div>	
-</div>
-</form>
-</center>
-</div>							
-</div>
-<div class="col-lg-4">
-</div>
-</div>
-<div class="row">
-<div class="col-md-12 col-left" > <h1 style="color:#FF0000; text-align:center;font-size:22px;" >NO RECORD FOUND</h1></div></div>
-</div>
+    /* Style for the label */
+    .label-top {
+        text-align: left;
+    }
+    
+    /* Style for the search input */
+    .search-input {
+        width: 20%;
+        text-align: center;
+        padding: 8px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+    
+    /* Style for the button */
+    .button-verify {
+        display: block;
+        width: 100px; /* Adjust width as needed */
+        margin: 0 auto; /* Center the button */
+        padding: 10px;
+        background-color: #007bff; /* Example color */
+        color: #fff; /* Example color */
+        border: none;
+        cursor: pointer;
+    }
+    
+    /* Style for the left and right boxes container */
+    .boxes-container {
+        display: flex;
+        justify-content: space-between; /* Position left and right */
+        margin-top: 20px; /* Adjust margin as needed */
+    }
+    
+    /* Style for the left and right boxes */
+    .left-box,
+    .right-box {
+        display: block; /* Initially hide the boxes */
+        width: 45%; /* Adjust width as needed */
+        padding: 10px;
+        border: 1px solid #ccc; /* Example border color */
+        height: 400px;
+    }
+    .right-box{
+        margin-right: 50px;
+    }
+</style>
+
+
+<div>
+    <div>
+        <div>
+            <div>
+                <div>
+                    <h3 style="text-align: center;">Download Admit Card</h3>
+                    <form style="width: 100%; margin-left: 2%;" method="post" onSubmit="return validateLoginForm()" novalidate="novalidate">
+                        <div>
+                            <div>
+                                <label class="label-top">Enrollment No</label>
+                                <input class="search-input" name="regsno" value="" type="text">
+                            </div>
+                            <div>
+                                <input class="button-verify" name="go" type="button" value="Verify" onclick="verify()">
+                            </div>
+                            <div>
+                                Powered by : <strong>GURUKRUPA</strong>
+                            </div>
+                            <div class="result_div">
+                                <div class="boxes-container">
+                                    <div class="left-box">
+                                        <h4>Name: <span id="name"></span></h4>
+                                        <h4>Registration No: <span id="regNo"></span></h4>
+                                        <h4>Date of Admission: <span id="admissionDate"></span></h4>
+                                        <h4>DOB: <span id="dob"></span></h4>
+                                        <h4>Father's Name: <span id="fatherName"></span></h4>
+                                        <h4>Mother's Name: <span id="motherName"></span></h4>
+                                        <h4>Course Duration: <span id="courseDuration"></span></h4>
+                                    </div>
+                                    <div class="right-box">
+                                        <img id="studentImage" src="" alt="Student Image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <h1 style="color:#FF0000; text-align:center;font-size:22px;display:none;" id="noRecordMsg">NO RECORD FOUND</h1>
+        </div>
+    </div>
+</div>  
+
+<script>
+    function verify() {
+        // Dummy data for demonstration
+        var dummyData = {
+            name: "John Doe",
+            regNo: "123456",
+            admissionDate: "2024-04-01",
+            dob: "1990-01-01",
+            fatherName: "Michael Doe",
+            motherName: "Alice Doe",
+            courseDuration: "4 years",
+            imageUrl: "https://via.placeholder.com/150" // Placeholder image URL
+        };
+
+        // Assuming successful verification
+        var verificationSuccess = true;
+
+        if (verificationSuccess) {
+            // Display details in left box
+            document.getElementById('name').textContent = dummyData.name;
+            document.getElementById('regNo').textContent = dummyData.regNo;
+            document.getElementById('admissionDate').textContent = dummyData.admissionDate;
+            document.getElementById('dob').textContent = dummyData.dob;
+            document.getElementById('fatherName').textContent = dummyData.fatherName;
+            document.getElementById('motherName').textContent = dummyData.motherName;
+            document.getElementById('courseDuration').textContent = dummyData.courseDuration;
+
+            // Display image in right box
+            document.getElementById('studentImage').src = dummyData.imageUrl;
+
+            // Show the result boxes
+            document.querySelectorAll('.result_div .left-box, .result_div .right-box').forEach(function(element) {
+                element.style.display = 'block';
+            });
+
+            // Hide the no record found message
+            document.getElementById('noRecordMsg').style.display = 'none';
+        } else {
+            // Handle verification failure if needed
+            alert('Verification failed');
+        }
+    }
+</script>
     </div>
 </div>
 <!-- About Us End -->

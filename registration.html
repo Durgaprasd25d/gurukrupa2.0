@@ -164,34 +164,55 @@ function find_batch(batchid) {
 
 
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-   $(document).ready(function() {
-    window.submitForm = function(event) {
-        // Prevent the default form submission
-        event.preventDefault();
-        
-        // Serialize form data
-        var formData = $('#studentForm').serialize();
-        
-        // Submit form data using AJAX
-        $.ajax({
-            type: 'POST',
-            url: $('#studentForm').attr('action'), // Get the form action URL
-            data: formData,
-            success: function(response) {
-                // Handle the success response
-                console.log('Form submitted successfully');
-                // You can display a success message or perform any other actions here
-            },
-            error: function(xhr, status, error) {
-                // Handle errors
-                console.error('Error:', error);
-                // You can display an error message or perform any other actions here
-            }
-        });
-    };
-});
-</script>
+    $(document).ready(function() {
+        window.submitForm = function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+            
+            // Serialize form data
+            var formData = $('#studentForm').serialize();
+            
+            // Submit form data using AJAX
+            $.ajax({
+                type: 'POST',
+                url: 'https://grtcindia.in/grtc-server/api/students',
+                data: formData,
+                success: function(response) {
+                    // Handle the success response
+                    console.log('Form submitted successfully');
+                    // You can display a success message or perform any other actions here
+                },
+                error: function(xhr, status, error) {
+                    // If there is a redirection (status code 302)
+                    if (xhr.status === 302) {
+                        // Get the redirection URL from the response headers
+                        var redirectUrl = xhr.getResponseHeader('Location');
+                        // Make a new AJAX request to the redirection URL
+                        $.ajax({
+                            type: 'POST',
+                            url: redirectUrl,
+                            data: formData,
+                            success: function(response) {
+                                // Handle the success response from the redirected URL
+                                console.log('Form submitted successfully after redirection');
+                            },
+                            error: function(xhr, status, error) {
+                                // Handle errors after redirection
+                                console.error('Error after redirection:', error);
+                            }
+                        });
+                    } else {
+                        // Handle other errors
+                        console.error('Error:', error);
+                    }
+                }
+            });
+        };
+    });
+    </script>
+    
 </head>
 <body class="home1">
 <!--Full width header Start-->
