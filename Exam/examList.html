@@ -8,11 +8,82 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-  <div id="examList" class="container mx-auto mt-8 px-4">
-    <h1 class="text-3xl font-bold mb-4">Gurukrupa Exams</h1>
+  <div class="container mx-auto mt-8 px-4">
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-3xl font-bold">Gurukrupa Exams</h1>
+      <img
+        src=""
+        alt="Profile"
+        class="h-10 w-10 rounded-full"
+        id="profilePic"
+      />
+    </div>
+    <table class="min-w-full bg-white border rounded-lg overflow-hidden">
+      <thead class="bg-gray-200 uppercase text-sm leading-normal">
+        <tr>
+          <th class="py-3 px-6 text-left">Exam Name</th>
+          <th class="py-3 px-6 text-left">Description</th>
+          <th class="py-3 px-6 text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700">
+        <!-- Exam data will be dynamically added here -->
+      </tbody>
+    </table>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="./examList.js"></script>
+  <script>
+    $(document).ready(async function () {
+      const token = localStorage.getItem('token');
+      const studentData = JSON.parse(localStorage.getItem('studentData')); // Parse studentData from JSON string
+      console.log('token', token);
+      
+      if (!token) {
+        // If no token is found, redirect to the login page
+        window.location.href = 'login.html';
+        return;
+      }
+
+      // Set profile picture src attribute using provided code snippet
+      $("#profilePic").attr(
+        "src",
+        `http://localhost:3000/${studentData.profilePic.replace(/\\/g, "/")}`
+      );
+
+      try {
+        const response = await $.ajax({
+          url: 'http://localhost:3000/api/exam/student',
+          type: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        if (response) {
+          console.log(response);
+          // Populate the exam table with data
+          const examTableBody = $('tbody.text-gray-700');
+          response.forEach(exam => {
+            const examRow = $(`
+              <tr>
+                <td class="py-4 px-6">${exam.title}</td>
+                <td class="py-4 px-6">${exam.description}</td>
+                <td class="py-4 px-6 text-center">
+                  <a href="exam.html?id=${exam._id}" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-black rounded">Start Exam</a>
+
+                </td>
+              </tr>
+            `);
+            examTableBody.append(examRow);
+          });
+        } else {
+          console.error('Failed to fetch exam data');
+        }
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
+    });
+  </script>
 </body>
 </html>
