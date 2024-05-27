@@ -3,6 +3,92 @@ $(document).ready(async function () {
   const loader = $("#loader");
   loader.show();
 
+  async function submitExam() {
+    const answersPayload = {
+      answers: Object.keys(studentAnswers).map((questionId) => ({
+        questionId: questionId,
+        answer: studentAnswers[questionId],
+      })),
+    };
+
+    try {
+      const submitResponse = await $.ajax({
+        url: `http://localhost:3000/api/exam/${examId}/attend`,
+        type: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+        data: JSON.stringify(answersPayload),
+      });
+
+      console.log(submitResponse);
+
+      if (submitResponse) {
+        // Encode the submit response as a URL parameter
+        const encodedSubmitResponse = encodeURIComponent(
+          JSON.stringify(submitResponse)
+        );
+        alert("Exam submitted successfully");
+        // Redirect to the result page with the submit response parameter
+        window.location.href = `../Exam/Result.html?submitResponse=${encodedSubmitResponse}`;
+      } else {
+        alert("Failed to submit the exam.");
+      }
+    } catch (error) {
+      console.error("Error submitting exam:", error);
+      let errorMessage = "Failed to submit the exam. Please try again.";
+
+      if (error.responseJSON && error.responseJSON.errors) {
+        // Check if the error contains a specific error message indicating the user has already attempted the exam
+        const examAttemptError = error.responseJSON.errors.find(
+          (err) => err.msg === "You have already attempted this exam"
+        );
+
+        if (examAttemptError) {
+          // If the user has already attempted the exam, display a specific message
+          errorMessage = examAttemptError.msg;
+        } else {
+          // If the error is not related to exam attempt, construct a general error message
+          errorMessage = error.responseJSON.errors
+            .map((err) => err.msg)
+            .join(". ");
+        }
+      } else if (error.responseJSON && error.responseJSON.message) {
+        // If the server returned a general error message
+        errorMessage = error.responseJSON.message;
+      }
+
+      alert(errorMessage);
+    }
+  }
+
+  const timerDuration = 1 * 10; // 1 hour
+  let timerSeconds = timerDuration;
+
+  // Function to format the timer display
+  function formatTimer(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(hours).padStart(
+      2,
+      "0"
+    )}:${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
+  }
+
+  // Update the timer display every second
+  const timerInterval = setInterval(function () {
+    timerSeconds--;
+    $("#timer").text(formatTimer(timerSeconds));
+
+    if (timerSeconds <= 0) {
+      clearInterval(timerInterval); // Stop the timer
+      submitExam(); // Automatically submit the exam when time is up
+      console.log("submit");
+    }
+  }, 1000); // Update every second
+
   const studentAnswers = {};
 
   // Function to extract parameter value from URL
@@ -111,10 +197,10 @@ $(document).ready(async function () {
                 ${question.options
                   .map(
                     (option) => `
-                      <label class="block mb-2">
-                        <input type="radio" name="answer${index}" value="${option}" class="mr-2"> ${option}
-                      </label>
-                    `
+                  <label class="block mb-2">
+                    <input type="radio" name="answer${index}" value="${option}" class="mr-2"> ${option}
+                  </label>
+                `
                   )
                   .join("")}
               </div>
@@ -197,71 +283,15 @@ $(document).ready(async function () {
             .addClass("bg-blue-500");
         });
 
-        // Submit answers
+        // Call the submitExam function when the submit button is clicked
         $(".submit-exam").click(async function () {
-          const answersPayload =
-{
-            answers: Object.keys(studentAnswers).map((questionId) => ({
-              questionId: questionId,
-              answer: studentAnswers[questionId],
-            })),
-          };
-
-          try {
-            const submitResponse = await $.ajax({
-              url: `http://localhost:3000/api/exam/${examId}/attend`,
-              type: "POST",
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json",
-              },
-              data: JSON.stringify(answersPayload),
-            });
-          
-            console.log(submitResponse);
-          
-            if (submitResponse) {
-              // Encode the submit response as a URL parameter
-              const encodedSubmitResponse = encodeURIComponent(
-                JSON.stringify(submitResponse)
-              );
-              alert("Exam submitted successfully");
-              // Redirect to the result page with the submit response parameter
-              window.location.href = `../Exam/Result.html?submitResponse=${encodedSubmitResponse}`;
-            } else {
-              alert("Failed to submit the exam.");
-            }
-          } catch (error) {
-            console.error("Error submitting exam:", error);
-            let errorMessage = "Failed to submit the exam. Please try again.";
-          
-            if (error.responseJSON && error.responseJSON.errors) {
-              // Check if the error contains a specific error message indicating the user has already attempted the exam
-              const examAttemptError = error.responseJSON.errors.find(err => err.msg === "You have already attempted this exam");
-              
-              if (examAttemptError) {
-                // If the user has already attempted the exam, display a specific message
-                errorMessage = examAttemptError.msg;
-              } else {
-                // If the error is not related to exam attempt, construct a general error message
-                errorMessage = error.responseJSON.errors.map(err => err.msg).join(". ");
-              }
-            } else if (error.responseJSON && error.responseJSON.message) {
-              // If the server returned a general error message
-              errorMessage = error.responseJSON.message;
-            }
-          
-            alert(errorMessage);
-          }
-          
+          await submitExam();
         });
-      } else {
-        console.error("Failed to fetch exam data");
       }
-    } else {
-      console.error("Failed to fetch exam data");
     }
   } catch (error) {
-    console.error("Error:", error.message);
+    console.error("Error fetching exam data:", error);
+    loader.hide(); // Hide loader
+    alert("Failed to fetch exam data. Please try again.");
   }
 });
