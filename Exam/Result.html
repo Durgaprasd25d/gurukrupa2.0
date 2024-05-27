@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.26.0/dist/full.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-md">
+        <div class="bg-blue-500 text-white text-center py-8">
+            <h1 class="text-3xl">Exam Result</h1>
+        </div>
+        <div class="p-8">
+            <div class="text-center mt-8">
+                <div class="text-3xl text-blue-700" id="percentage">0%</div>
+                <div class="mt-8 text-xl font-semibold text-gray-700">Attended Questions</div>
+                <div class="text-3xl text-blue-700" id="attended-questions">0 / 0</div>
+                <div class="mt-4 text-xl font-semibold text-gray-700">Correct Answers</div>
+                <div class="text-3xl text-blue-700" id="correct-answers">0</div>
+                <div class="mt-4 text-xl font-semibold text-gray-700">Total Marks</div>
+                <div class="text-3xl text-blue-700" id="total-marks">0</div>
+            </div>
+            <div class="mt-8 text-center">
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Thank you for attending the exam !</button>
+                <!-- <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 ml-4">Review Answers</button> -->
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample data received from the exam page
+            const urlParams = new URLSearchParams(window.location.search);
+            const encodedSubmitResponse = urlParams.get('submitResponse');
+            const submitResponse = JSON.parse(decodeURIComponent(encodedSubmitResponse));
+
+            // Extract data from the received object
+            const attendedQuestions = submitResponse.attendedQuestions;
+            const correctAnswers = submitResponse.correctAnswers;
+            const totalQuestions = submitResponse.totalQuestions;
+            const totalMark = submitResponse.totalMark;
+
+            // Calculate percentage for progress bar
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+
+            // Update DOM elements with the data
+            document.getElementById('percentage').textContent = `${percentage}%`;
+            document.getElementById('attended-questions').textContent = `${attendedQuestions} / ${totalQuestions}`;
+            document.getElementById('correct-answers').textContent = correctAnswers;
+            document.getElementById('total-marks').textContent = totalMark;
+        });
+    </script>
+</body>
+</html>

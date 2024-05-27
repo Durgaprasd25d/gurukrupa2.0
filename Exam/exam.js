@@ -15,35 +15,59 @@ $(document).ready(async function () {
   // Extract the ID from the URL
   const examId = getParameterByName("id");
 
-  // Get the token from local storage and decode it
-  const token = localStorage.getItem("token");
-  if (!token) {
-    alert("No token found. Please login again.");
-    window.location.href = "../../Login/login.html"; // Redirect to the login page
-    return;
+// Get the token from local storage and decode it
+const token = localStorage.getItem("token");
+
+// Verify if the token exists and is valid
+if (!token) {
+  // Token not found, redirect to login page
+  redirectToLogin();
+} else {
+  try {
+    // Decode the token
+    const decodedToken = jwt_decode(token);
+
+    // Verify if the token is expired
+    const currentTime = Math.floor(Date.now() / 1000);
+    if (decodedToken.exp < currentTime) {
+      // Token expired, redirect to login page
+      redirectToLogin();
+    }
+  } catch (error) {
+    // Token is invalid, redirect to login page
+    redirectToLogin();
   }
-  
+}
+
+function redirectToLogin() {
+  alert("Invalid or expired token. Please login again.");
+  window.location.href = "../../Login/login.html"; // Redirect to the login page
+}
+
+
   const decodedToken = jwt_decode(token);
   const studentId = decodedToken.studentId;
 
-// Retrieve student data from local storage
-const studentData = JSON.parse(localStorage.getItem("studentData"));
-if (!studentData) {
-  alert("No student data found. Please login again.");
-  return;
-}
+  // Retrieve student data from local storage
+  const studentData = JSON.parse(localStorage.getItem("studentData"));
+  if (!studentData) {
+    alert("No student data found. Please login again.");
+    return;
+  }
 
-// Ensure that the name property exists in the studentData object
-if (!studentData.name) {
-  alert("Student name not found in the data.");
-  return;
-}
+  // Ensure that the name property exists in the studentData object
+  if (!studentData.name) {
+    alert("Student name not found in the data.");
+    return;
+  }
 
-// Display student information including profile picture
-$("#profilePic").attr("src", `http://localhost:3000/${studentData.profilePic.replace(/\\/g, "/")}`);
-$("#studentName").text(studentData.name);
-$("#registrationNo").text(`Registration No: ${studentData.registrationNo}`);
-
+  // Display student information including profile picture
+  $("#profilePic").attr(
+    "src",
+    `http://localhost:3000/${studentData.profilePic.replace(/\\/g, "/")}`
+  );
+  $("#studentName").text(studentData.name);
+  $("#registrationNo").text(`Registration No: ${studentData.registrationNo}`);
 
   // Construct API URL with the extracted ID
   const apiUrl = `http://localhost:3000/api/exam/${examId}/studentId`;
@@ -127,35 +151,43 @@ $("#registrationNo").text(`Registration No: ${studentData.registrationNo}`);
           }
         });
 
-      // Save and mark for review
-$(".save-later").click(function () {
-  const activeQuestionElement = $(".question.active");
-  const activeQuestionId = activeQuestionElement.attr("id").replace("question", "");
-  const questionMongoId = activeQuestionElement.data("question-id");
-  const selectedOption = $(`#question${activeQuestionId} input[name="answer${activeQuestionId - 1}"]:checked`).val();
+        // Save and mark for review
+        $(".save-later").click(function () {
+          const activeQuestionElement = $(".question.active");
+          const activeQuestionId = activeQuestionElement
+            .attr("id")
+            .replace("question", "");
+          const questionMongoId = activeQuestionElement.data("question-id");
+          const selectedOption = $(
+            `#question${activeQuestionId} input[name="answer${
+              activeQuestionId - 1
+            }"]:checked`
+          ).val();
 
-  if (selectedOption) {
-    studentAnswers[questionMongoId] = selectedOption;
+          if (selectedOption) {
+            studentAnswers[questionMongoId] = selectedOption;
 
-    // Remove existing classes and add the mark for review class
-    $(`.question-button[data-question-id="${activeQuestionId}"]`)
-      .removeClass("bg-red-500 bg-green-500 bg-blue-500")
-      .addClass("bg-orange-500");
-  } else {
-    // If no option is selected, remove the answer for the question
-    delete studentAnswers[questionMongoId];
-  }
-});
+            // Remove existing classes and add the mark for review class
+            $(`.question-button[data-question-id="${activeQuestionId}"]`)
+              .removeClass("bg-red-500 bg-green-500 bg-blue-500")
+              .addClass("bg-orange-500");
+          } else {
+            // If no option is selected, remove the answer for the question
+            delete studentAnswers[questionMongoId];
+          }
+        });
 
-// Mark
-$(".mark").click(function () {
-  const activeQuestionId = $(".question.active").attr("id").replace("question", "");
+        // Mark
+        $(".mark").click(function () {
+          const activeQuestionId = $(".question.active")
+            .attr("id")
+            .replace("question", "");
 
-  // Remove existing classes and add the mark class
-  $(`.question-button[data-question-id="${activeQuestionId}"]`)
-    .removeClass("bg-red-500 bg-green-500 bg-orange-500")
-    .addClass("bg-blue-500");
-});
+          // Remove existing classes and add the mark class
+          $(`.question-button[data-question-id="${activeQuestionId}"]`)
+            .removeClass("bg-red-500 bg-green-500 bg-orange-500")
+            .addClass("bg-blue-500");
+        });
 
         // Submit answers
         $(".submit-exam").click(async function () {
@@ -176,10 +208,19 @@ $(".mark").click(function () {
               },
               data: JSON.stringify(answersPayload),
             });
-            console.log(answersPayload);
+
             console.log(submitResponse);
+
             if (submitResponse) {
-              alert("Exam submitted successfully!");
+              // Encode the submit response as a URL parameter
+              const encodedSubmitResponse = encodeURIComponent(
+                JSON.stringify(submitResponse)
+              );
+
+              // Redirect to the result page with the submit response parameter
+              window.location.href = `../Exam/Result.html?submitResponse=${encodedSubmitResponse}`;
+            } else {
+              alert("Failed to submit the exam.");
             }
           } catch (error) {
             console.error("Error submitting exam:", error.message);
