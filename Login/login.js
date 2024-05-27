@@ -15,6 +15,7 @@ $(document).ready(function () {
         localStorage.setItem("studentData", JSON.stringify(data.student)); // Store student data
         console.log(data.token);
         console.log(data);
+        alert('Login Success')
         window.location.href = '../Exam/examList.html'; // Redirect to the exam page
       },
       error: function (xhr, status, error) {

@@ -1,4 +1,8 @@
 $(document).ready(async function () {
+  // Show loader while logging in
+  const loader = $("#loader");
+  loader.show();
+
   const studentAnswers = {};
 
   // Function to extract parameter value from URL
@@ -15,35 +19,35 @@ $(document).ready(async function () {
   // Extract the ID from the URL
   const examId = getParameterByName("id");
 
-// Get the token from local storage and decode it
-const token = localStorage.getItem("token");
+  // Get the token from local storage and decode it
+  const token = localStorage.getItem("token");
 
-// Verify if the token exists and is valid
-if (!token) {
-  // Token not found, redirect to login page
-  redirectToLogin();
-} else {
-  try {
-    // Decode the token
-    const decodedToken = jwt_decode(token);
+  // Verify if the token exists and is valid
+  if (!token) {
+    // Token not found, redirect to login page
+    redirectToLogin();
+  } else {
+    try {
+      // Decode the token
+      const decodedToken = jwt_decode(token);
 
-    // Verify if the token is expired
-    const currentTime = Math.floor(Date.now() / 1000);
-    if (decodedToken.exp < currentTime) {
-      // Token expired, redirect to login page
+      // Verify if the token is expired
+      const currentTime = Math.floor(Date.now() / 1000);
+      if (decodedToken.exp < currentTime) {
+        // Token expired, redirect to login page
+        redirectToLogin();
+      }
+    } catch (error) {
+      // Token is invalid, redirect to login page
       redirectToLogin();
     }
-  } catch (error) {
-    // Token is invalid, redirect to login page
-    redirectToLogin();
   }
-}
 
-function redirectToLogin() {
-  alert("Invalid or expired token. Please login again.");
-  window.location.href = "../../Login/login.html"; // Redirect to the login page
-}
-
+  function redirectToLogin() {
+    loader.hide(); // Hide loader
+    alert("Invalid or expired token. Please login again.");
+    window.location.href = "../../Login/login.html"; // Redirect to the login page
+  }
 
   const decodedToken = jwt_decode(token);
   const studentId = decodedToken.studentId;
@@ -51,12 +55,14 @@ function redirectToLogin() {
   // Retrieve student data from local storage
   const studentData = JSON.parse(localStorage.getItem("studentData"));
   if (!studentData) {
+    loader.hide(); // Hide loader
     alert("No student data found. Please login again.");
     return;
   }
 
   // Ensure that the name property exists in the studentData object
   if (!studentData.name) {
+    loader.hide(); // Hide loader
     alert("Student name not found in the data.");
     return;
   }
@@ -82,6 +88,8 @@ function redirectToLogin() {
     });
 
     if (response) {
+      loader.hide(); // Hide loader
+
       // Display the exam name
       $("#examName").text("Exam name :- " + response.title || "");
 
@@ -191,7 +199,8 @@ function redirectToLogin() {
 
         // Submit answers
         $(".submit-exam").click(async function () {
-          const answersPayload = {
+          const answersPayload =
+{
             answers: Object.keys(studentAnswers).map((questionId) => ({
               questionId: questionId,
               answer: studentAnswers[questionId],
@@ -208,24 +217,43 @@ function redirectToLogin() {
               },
               data: JSON.stringify(answersPayload),
             });
-
+          
             console.log(submitResponse);
-
+          
             if (submitResponse) {
               // Encode the submit response as a URL parameter
               const encodedSubmitResponse = encodeURIComponent(
                 JSON.stringify(submitResponse)
               );
-
+              alert("Exam submitted successfully");
               // Redirect to the result page with the submit response parameter
               window.location.href = `../Exam/Result.html?submitResponse=${encodedSubmitResponse}`;
             } else {
               alert("Failed to submit the exam.");
             }
           } catch (error) {
-            console.error("Error submitting exam:", error.message);
-            alert("Failed to submit the exam. Please try again.");
+            console.error("Error submitting exam:", error);
+            let errorMessage = "Failed to submit the exam. Please try again.";
+          
+            if (error.responseJSON && error.responseJSON.errors) {
+              // Check if the error contains a specific error message indicating the user has already attempted the exam
+              const examAttemptError = error.responseJSON.errors.find(err => err.msg === "You have already attempted this exam");
+              
+              if (examAttemptError) {
+                // If the user has already attempted the exam, display a specific message
+                errorMessage = examAttemptError.msg;
+              } else {
+                // If the error is not related to exam attempt, construct a general error message
+                errorMessage = error.responseJSON.errors.map(err => err.msg).join(". ");
+              }
+            } else if (error.responseJSON && error.responseJSON.message) {
+              // If the server returned a general error message
+              errorMessage = error.responseJSON.message;
+            }
+          
+            alert(errorMessage);
           }
+          
         });
       } else {
         console.error("Failed to fetch exam data");
