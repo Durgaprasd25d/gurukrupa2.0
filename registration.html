@@ -164,54 +164,6 @@ function find_batch(batchid) {
 
 
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        window.submitForm = function(event) {
-            // Prevent the default form submission
-            event.preventDefault();
-            
-            // Serialize form data
-            var formData = $('#studentForm').serialize();
-            
-            // Submit form data using AJAX
-            $.ajax({
-                type: 'POST',
-                url: 'https://grtcindia.in/grtc-server/api/students',
-                data: formData,
-                success: function(response) {
-                    // Handle the success response
-                    console.log('Form submitted successfully');
-                    // You can display a success message or perform any other actions here
-                },
-                error: function(xhr, status, error) {
-                    // If there is a redirection (status code 302)
-                    if (xhr.status === 302) {
-                        // Get the redirection URL from the response headers
-                        var redirectUrl = xhr.getResponseHeader('Location');
-                        // Make a new AJAX request to the redirection URL
-                        $.ajax({
-                            type: 'POST',
-                            url: redirectUrl,
-                            data: formData,
-                            success: function(response) {
-                                // Handle the success response from the redirected URL
-                                console.log('Form submitted successfully after redirection');
-                            },
-                            error: function(xhr, status, error) {
-                                // Handle errors after redirection
-                                console.error('Error after redirection:', error);
-                            }
-                        });
-                    } else {
-                        // Handle other errors
-                        console.error('Error:', error);
-                    }
-                }
-            });
-        };
-    });
-    </script>
     
 </head>
 <body class="home1">
@@ -390,9 +342,9 @@ function find_batch(batchid) {
                         </style>
                         <center>
                             <div class="mrg-tp-15" style="margin-top:15px;margin-bottom:5px;">
-                                <a class="olbtn" href="inquiry.html" style="margin-top:5px;">Enquiry </a>
-                                <a class="olbtn" href="contact-us.html" style="margin-top:5px;"> Call Request </a>
-                                <a class="olbtn" href="business-partner.html" style="margin-top:5px;"> Franchise
+                                <a class="olbtn" href="index.html" style="margin-top:5px;">Enquiry </a>
+                                <a class="olbtn" href="index.html" style="margin-top:5px;"> Call Request </a>
+                                <a class="olbtn" href="index.html" style="margin-top:5px;"> Franchise
                                     Enquiry</a>
                             </div>
                         </center>
@@ -561,13 +513,44 @@ margin-bottom:10px;
             </div>
             <div class="row">
                 <div class="col-md-12" align="center">
-                    <button type="submit" class="btn" style="color: #ffffff; background-color: #2196f3;" tabindex="16">Submit</button>
+                    <button type="submit" class="btn" onsubmit="submitForm()" style="color: #ffffff; background-color: #2196f3;" tabindex="16">Submit</button>
                 </div>
             </div>
         </div>
     </form>
     
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Collect form data
+            var formData = new FormData($('#studentForm')[0]);
+            console.log(formData);
+            
+            // API Endpoint URL
+            var apiUrl = 'YOUR_API_ENDPOINT_URL';
+            
+            // AJAX request to submit form data
+            $.ajax({
+                type: 'POST',
+                url: apiUrl,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    console.log('Form data submitted successfully:', response);
+                    // Optionally, you can perform actions after successful submission
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error submitting form data:', error);
+                    // Optionally, you can handle errors here
+                }
+            });
+        }
+    </script>
     
+
 
 </div>
 </div>

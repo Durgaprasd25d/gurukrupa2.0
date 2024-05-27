@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gurrukrupa Exams</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .question-palette {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0.5rem;
+        margin-left: 27px;
+      }
+      .question-palette button {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 0.875rem;
+      }
+      .legend-circle {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+      .question {
+        display: none;
+        height: 68.7vh;
+        margin: 0px 2px 2px 2px;
+      }
+      .question.active {
+        display: block;
+      }
+      .btn-save {
+        background-color: #006400;
+      }
+      .btn-save-later {
+        background-color: #ff8c00;
+      }
+      .btn-not-answered {
+        background-color: #8b0000;
+      }
+      .btn-marked {
+        background-color: #00008b;
+      }
+      #studentInfo {
+        display: flex;
+        align-items: center;
+      }
+
+      #profilePic {
+        margin-top: 2px;
+        width: 60px; /* Adjust the size as needed */
+        height: 60px; /* Adjust the size as needed */
+        border-radius: 8px; /* Adjust the border radius as needed */
+        object-fit: cover; /* Ensure the image fills the square without distortion */
+      }
+
+      #studentInfo div {
+        flex-grow: 1;
+        margin-left: 10px; /* Adjust the spacing between the image and text */
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 p-4">
+    <div
+      class="container mx-auto bg-white shadow-md rounded p-4 h-screen flex flex-col"
+    >
+      <div class="flex justify-between items-center mb-4">
+        <h1 class="text-2xl font-bold" id="examName">Exam</h1>
+        <div class="flex justify-between items-center mb-4" id="studentInfo">
+          <img
+            src=""
+            alt="Profile"
+            class="h-10 w-10 rounded-full mr-4"
+            id="profilePic"
+          />
+          <div>
+            <span class="block text-lg font-bold" id="studentName"></span>
+            <span class="block" id="registrationNo"></span>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <span id="timer">1:00:00</span> <!-- Timer display -->
+        </div>
+      </div>
+      <div class="flex flex-grow">
+        <div class="w-3/4" id="questionContainer">
+          <!-- Questions and options will be dynamically added here -->
+        </div>
+        <div class="w-1/4 flex flex-col">
+          <div class="p-4 border rounded mb-4 flex-grow">
+            <h3 class="font-semibold mb-2" style="margin-left: 27px;">Question Palette:</h3>
+            <div class="question-palette">
+              <!-- Question palette buttons will be dynamically added here -->
+            </div>
+          </div>
+          <div class="p-4 border rounded">
+            <h3 class="font-semibold mb-2">Legend:</h3>
+            <div class="legend-item">
+              <span
+                class="legend-circle"
+                style="background-color: #006400"
+              ></span>
+              Answered
+            </div>
+            <div class="legend-item">
+              <span
+                class="legend-circle"
+                style="background-color: #ff8c00"
+              ></span>
+              Answered and Marked for Review
+            </div>
+            <div class="legend-item">
+              <span
+                class="legend-circle"
+                style="background-color: #8b0000"
+              ></span>
+              Not Answered
+            </div>
+            <div class="legend-item">
+              <span
+                class="legend-circle"
+                style="background-color: #00008b"
+              ></span>
+              Marked but Not Answered
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end items-center mt-4 pb-4">
+        <button class="px-4 py-2 text-white rounded save-answer btn-save">
+          Save
+        </button>
+        <button
+          class="px-4 py-2 text-white rounded ml-2 save-later btn-save-later"
+        >
+          Save and Mark for Review
+        </button>
+        <button class="px-4 py-2 text-white rounded ml-2 mark btn-marked">
+          Mark
+        </button>
+        <button
+          class="px-4 py-2 bg-green-500 text-white rounded ml-2 submit-exam"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+    <script src="exam.js"></script>
+  </body>
+</html>

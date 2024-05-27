@@ -241,14 +241,14 @@
                                 animation: glowing 1500ms infinite;
                             }
                         </style>
-                        <center>
-                            <div class="mrg-tp-15" style="margin-top:15px;margin-bottom:5px;">
-                                <a class="olbtn" href="inquiry.html" style="margin-top:5px;">Enquiry </a>
-                                <a class="olbtn" href="contact-us.html" style="margin-top:5px;"> Call Request </a>
-                                <a class="olbtn" href="business-partner.html" style="margin-top:5px;"> Franchise
-                                    Enquiry</a>
-                            </div>
-                        </center>
+                       <center>
+                        <div class="mrg-tp-15" style="margin-top:15px;margin-bottom:5px;">
+                            <a class="olbtn" href="index.html" style="margin-top:5px;">Enquiry </a>
+                            <a class="olbtn" href="index.html" style="margin-top:5px;"> Call Request </a>
+                            <a class="olbtn" href="index.html" style="margin-top:5px;"> Franchise
+                                Enquiry</a>
+                        </div>
+                    </center>
 
 
                     </div>
@@ -381,12 +381,10 @@ border: 1px solid #ccc;}
 
 <!-- form css -->
 <style>
-    /* Style for the label */
+    /* CSS styles remain unchanged as per the requirements */
     .label-top {
         text-align: left;
     }
-    
-    /* Style for the search input */
     .search-input {
         width: 20%;
         text-align: center;
@@ -394,92 +392,118 @@ border: 1px solid #ccc;}
         box-sizing: border-box;
         margin-bottom: 10px;
     }
-    
-    /* Style for the button */
     .button-verify {
         display: block;
-        width: 100px; /* Adjust width as needed */
-        margin: 0 auto; /* Center the button */
+        width: 100px;
+        margin: 0 auto;
         padding: 10px;
-        background-color: #007bff; /* Example color */
-        color: #fff; /* Example color */
+        background-color: #007bff;
+        color: #fff;
         border: none;
         cursor: pointer;
     }
-    
-    /* Style for the left and right boxes container */
     .boxes-container {
         display: flex;
-        justify-content: space-between; /* Position left and right */
-        margin-top: 20px; /* Adjust margin as needed */
+        justify-content: space-between;
+        margin-top: 20px;
         margin-bottom: 6px;
     }
-    
-    /* Style for the left and right boxes */
-    .left-box,
-    .right-box {
-        display: none; /* Initially hide the boxes */
-        width: 45%; /* Adjust width as needed */
+    .left-box {
+        display: none;
+        width: 45%;
         padding: 10px;
-        border: 1px solid #ccc; /* Example border color */
+        border: 1px solid #ccc;
         height: 400px;
+        position: relative;
+        box-sizing: border-box;
+        overflow: hidden;
     }
-    .right-box{
-        margin-right: 50px;
+    .left-box-content {
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
+    .profilePic {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 150px; /* Adjust width as needed */
+    height: 150px; /* Adjust height as needed */
+    overflow: hidden; /* Ensure the image stays within the container */
+}
+
+.profilePic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
+.right-box {
+    display: none;
+    width: 45%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    height: 400px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.right-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Use 'contain' to fit the image within the container */
+    display: block;
+}
+
+
 </style>
-
-
 <div>
-    <div>
+    <h3 style="text-align: center;">Download Admit Card</h3>
+    <form style="width: 100%; margin-left: 2%;" method="post" onSubmit="return false;">
         <div>
             <div>
-                <div>
-                    <h3 style="text-align: center;">Download Admit Card</h3>
-                    <form style="width: 100%; margin-left: 2%;" method="post" onSubmit="return validateLoginForm()" novalidate="novalidate">
+                <label class="label-top">Enrollment No</label>
+                <input class="search-input" name="regsno" value="" type="text">
+            </div>
+            <div>
+                <input class="button-verify" name="go" type="button" value="Verify" onclick="verify()">
+            </div>
+            <div>
+                Powered by : <strong>GURUKRUPA</strong>
+            </div>
+            <div class="result_div">
+                <div class="boxes-container">
+                    <div class="left-box" style="display: flex;">
                         <div>
-                            <div>
-                                <label class="label-top">Enrollment No</label>
-                                <input class="search-input" name="regsno" value="" type="text">
-                            </div>
-                            <div>
-                                <input class="button-verify" name="go" type="button" value="Verify" onclick="verify()">
-                            </div>
-                            <div>
-                                Powered by : <strong>GURUKRUPA</strong>
-                            </div>
-                            <div class="result_div">
-                                <div class="boxes-container">
-                                    <div class="left-box">
-                                        <h4>Name: <span id="name"></span></h4>
-                                        <h4>Registration No: <span id="regNo"></span></h4>
-                                        <h4>Date of Admission: <span id="admissionDate"></span></h4>
-                                        <h4>DOB: <span id="dob"></span></h4>
-                                        <h4>Father's Name: <span id="fatherName"></span></h4>
-                                        <h4>Mother's Name: <span id="motherName"></span></h4>
-                                        <h4>Course Duration: <span id="courseDuration"></span></h4>
-                                    </div>
-                                    <div class="right-box">
-                                        <img id="studentImage" src="" alt="Student Image">
-                                    </div>
-                                </div>
-                            </div>
+                            <h4>Name: <span id="name"></span></h4>
+                            <h4>Registration No: <span id="regNo"></span></h4>
+                            <h4>Date of Admission: <span id="admissionDate"></span></h4>
+                            <h4>DOB: <span id="dob"></span></h4>
+                            <h4>Father's Name: <span id="fatherName"></span></h4>
+                            <h4>Mother's Name: <span id="motherName"></span></h4>
+                            <h4>Course Duration: <span id="courseDuration"></span></h4>
                         </div>
-                    </form>
+                        <div class="profilePic">
+                            <img id="profilePicture" src="" alt="">
+                        </div>
+                    </div>
+                    <div class="right-box">
+                        <img id="studentImage" src="" alt="Student Image">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <div>
         <div>
             <h1 style="color:#FF0000; text-align:center;font-size:22px;display:none;" id="noRecordMsg">NO RECORD FOUND</h1>
         </div>
     </div>
-</div>  
+</div>
 
 <script>
     function verify() {
-        // Dummy data for demonstration
         var dummyData = {
             name: "John Doe",
             regNo: "123456",
@@ -488,14 +512,13 @@ border: 1px solid #ccc;}
             fatherName: "Michael Doe",
             motherName: "Alice Doe",
             courseDuration: "4 years",
-            imageUrl: "https://via.placeholder.com/150" // Placeholder image URL
+            imageUrl: "./userImage/img_2.jpg",
+            profilePictureUrl: "./userImage/img_1.jpg"
         };
 
-        // Assuming successful verification
         var verificationSuccess = true;
 
         if (verificationSuccess) {
-            // Display details in left box
             document.getElementById('name').textContent = dummyData.name;
             document.getElementById('regNo').textContent = dummyData.regNo;
             document.getElementById('admissionDate').textContent = dummyData.admissionDate;
@@ -504,18 +527,15 @@ border: 1px solid #ccc;}
             document.getElementById('motherName').textContent = dummyData.motherName;
             document.getElementById('courseDuration').textContent = dummyData.courseDuration;
 
-            // Display image in right box
             document.getElementById('studentImage').src = dummyData.imageUrl;
+            document.getElementById('profilePicture').src = dummyData.profilePictureUrl;
 
-            // Show the result boxes
             document.querySelectorAll('.result_div .left-box, .result_div .right-box').forEach(function(element) {
                 element.style.display = 'block';
             });
 
-            // Hide the no record found message
             document.getElementById('noRecordMsg').style.display = 'none';
         } else {
-            // Handle verification failure if needed
             alert('Verification failed');
         }
     }
